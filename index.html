@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evershift Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Suisse+Int%27l+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f3ef;
+      --mid: #888;
+      --rule: rgba(10,10,10,0.15);
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--white);
+      color: var(--black);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    }
+
+    .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .wordmark em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .reg {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--mid);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+
+    .eyebrow::before {
+      content: '— ';
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+    }
+
+    h1 em {
+      font-style: italic;
+    }
+
+    .divider {
+      width: 2.5rem;
+      height: 1px;
+      background: var(--black);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: expandLine 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+      transform-origin: left;
+    }
+
+    .sub {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      text-transform: uppercase;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+    }
+
+    .address {
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      line-height: 1.9;
+      text-transform: uppercase;
+    }
+
+    .year {
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes expandLine {
+      from {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      to {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header, main, footer {
+        padding-left: 1.8rem;
+        padding-right: 1.8rem;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="wordmark"><em>Evershift</em> Games</span>
+    <span class="reg">Pte. Ltd.</span>
+  </header>
+
+  <main>
+    <p class="eyebrow">Globally distributed</p>
+    <h1>Independent game<br><em>developer.</em></h1>
+    <div class="divider"></div>
+    <p class="sub">Stay tuned for our first<br>mobile game announcement.</p>
+  </main>
+
+  <footer>
+    <address class="address" style="font-style:normal;">
+      68 Circular Road, #02-01<br>
+      Singapore 049422
+    </address>
+    <span class="year">© 2026 Evershift Games Pte. Ltd.</span>
+  </footer>
+
+</body>
+</html>
