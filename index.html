@@ -3,11 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evershift Games</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Suisse+Int%27l+Mono&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
+  <title>Evershift Games | Independent Mobile Game Studio</title>
+  <meta
+    name="description"
+    content="Evershift Games Pte. Ltd. is a Singapore-based independent game studio developing original mobile games for players around the world."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.evershiftgames.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Evershift Games" />
+  <meta
+    property="og:description"
+    content="A Singapore-based, globally distributed studio creating original mobile games."
+  />
+  <meta property="og:url" content="https://www.evershiftgames.com/" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Evershift Games Pte. Ltd.",
+    "url": "https://www.evershiftgames.com/",
+    "email": "contact@evershiftgames.com",
+    "description": "Independent game development studio creating original mobile games.",
+    "founder": {
+      "@type": "Person",
+      "name": "Lorenzo Aurea"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "68 Circular Road, #02-01",
+      "addressLocality": "Singapore",
+      "postalCode": "049422",
+      "addressCountry": "SG"
+    }
+  }
+  </script>
+
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -16,218 +50,752 @@
     }
 
     :root {
-      --black: #0a0a0a;
-      --white: #f5f3ef;
-      --mid: #888;
-      --rule: rgba(10,10,10,0.15);
+      --ink: #0a0a0a;
+      --paper: #f5f3ef;
+      --muted: #686868;
+      --soft: #e9e5de;
+      --rule: rgba(10, 10, 10, 0.16);
+      --max: 1120px;
     }
 
-    html, body {
-      height: 100%;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--white);
-      color: var(--black);
-      font-family: 'DM Mono', monospace;
-      font-weight: 300;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
       overflow-x: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-weight: 400;
+      line-height: 1.6;
     }
 
-    /* Grain overlay */
     body::before {
-      content: '';
+      content: "";
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.035;
-      pointer-events: none;
       z-index: 100;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
     }
 
-    /* ── HEADER ── */
-    header {
-      padding: 2.5rem 3rem;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--rule);
-      opacity: 0;
-      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    a {
+      color: inherit;
+      text-underline-offset: 0.25em;
     }
 
-    .wordmark {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+    a:hover,
+    a:focus-visible {
+      text-decoration-thickness: 2px;
     }
 
-    .wordmark em {
-      font-style: italic;
-      font-weight: 300;
-    }
-
-    .reg {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--mid);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── MAIN ── */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 3rem;
-      max-width: 900px;
+    .shell {
+      width: min(calc(100% - 3rem), var(--max));
       margin: 0 auto;
-      width: 100%;
+    }
+
+    .serif {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
     }
 
     .eyebrow {
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
+      color: var(--muted);
+      font-size: 0.69rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
     }
 
     .eyebrow::before {
-      content: '— ';
+      content: "— ";
+    }
+
+    .site-header {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .header-inner {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .wordmark {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .wordmark-main {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .wordmark-main em {
+      font-weight: 400;
+    }
+
+    .legal-suffix {
+      color: var(--muted);
+      font-size: 0.64rem;
+      letter-spacing: 0.06em;
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--ink);
+      text-decoration: underline;
+    }
+
+    .hero {
+      padding: clamp(5rem, 10vw, 9rem) 0 clamp(4.5rem, 8vw, 7rem);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.7fr);
+      gap: clamp(3rem, 7vw, 7rem);
+      align-items: end;
     }
 
     h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+      max-width: 880px;
+      margin-top: 1.5rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.2rem, 8vw, 7.4rem);
+      font-weight: 400;
+      line-height: 0.97;
+      letter-spacing: -0.045em;
     }
 
     h1 em {
-      font-style: italic;
+      font-weight: 400;
     }
 
-    .divider {
-      width: 2.5rem;
-      height: 1px;
-      background: var(--black);
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: expandLine 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
-      transform-origin: left;
+    .hero-copy {
+      max-width: 39rem;
+      margin-top: 2.2rem;
+      color: #303030;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.15rem, 2vw, 1.48rem);
+      line-height: 1.55;
     }
 
-    .sub {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      color: var(--mid);
-      text-transform: uppercase;
+    .hero-aside {
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--ink);
+    }
+
+    .hero-aside p {
+      color: var(--muted);
+      font-size: 0.76rem;
       line-height: 1.8;
-      opacity: 0;
-      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
     }
 
-    /* ── FOOTER ── */
-    footer {
-      padding: 2rem 3rem;
-      border-top: 1px solid var(--rule);
+    .hero-actions {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 1rem;
       flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+      gap: 0.8rem;
+      margin-top: 1.6rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--ink);
+      font-size: 0.67rem;
+      letter-spacing: 0.09em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-1px);
+    }
+
+    .section {
+      padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.45fr) minmax(0, 1.3fr);
+      gap: clamp(2rem, 6vw, 6rem);
+      align-items: start;
+    }
+
+    h2 {
+      max-width: 760px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.3rem, 5vw, 4.7rem);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      max-width: 47rem;
+      margin-top: 1.8rem;
+      color: #303030;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.05rem, 1.7vw, 1.28rem);
+      line-height: 1.7;
+    }
+
+    .body-copy {
+      max-width: 47rem;
+      margin-top: 1.2rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.9;
+    }
+
+    .capabilities {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 4rem;
+      border-top: 1px solid var(--rule);
+      border-left: 1px solid var(--rule);
+    }
+
+    .capability {
+      min-height: 220px;
+      padding: 2rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .capability-number {
+      color: var(--muted);
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+    }
+
+    .capability h3 {
+      margin-top: 2.7rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+    }
+
+    .capability p {
+      margin-top: 0.9rem;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.8;
+    }
+
+    .project-panel {
+      padding: clamp(2rem, 5vw, 4rem);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .project-panel .eyebrow,
+    .project-panel .body-copy {
+      color: #b9b7b2;
+    }
+
+    .project-panel h2 {
+      max-width: 930px;
+      margin-top: 1.6rem;
+    }
+
+    .project-panel .lead {
+      color: var(--paper);
+    }
+
+    .studio-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.75fr);
+      gap: clamp(3rem, 8vw, 8rem);
+      align-items: start;
+    }
+
+    .founder-card {
+      padding: 2rem;
+      border: 1px solid var(--rule);
+    }
+
+    .founder-card h3 {
+      margin-top: 1.4rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+    }
+
+    .founder-card p {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.8;
+    }
+
+    .company-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: clamp(3rem, 8vw, 8rem);
+    }
+
+    .details {
+      border-top: 1px solid var(--ink);
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 1.5rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .detail-label {
+      color: var(--muted);
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .detail-value {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.06rem;
+      line-height: 1.55;
+    }
+
+    .privacy {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .privacy details {
+      max-width: 820px;
+    }
+
+    .privacy summary {
+      cursor: pointer;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.3rem;
+    }
+
+    .privacy p {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 2.5rem 0 3rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
     }
 
     .address {
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      color: var(--mid);
+      color: var(--muted);
+      font-size: 0.67rem;
+      font-style: normal;
+      letter-spacing: 0.07em;
       line-height: 1.9;
       text-transform: uppercase;
     }
 
-    .year {
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      color: var(--mid);
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 1.2rem;
+      color: var(--muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      white-space: nowrap;
     }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .copyright {
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: 0.63rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    @keyframes expandLine {
-      from {
-        opacity: 0;
-        transform: scaleX(0);
-      }
-      to {
-        opacity: 1;
-        transform: scaleX(1);
-      }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      header, main, footer {
-        padding-left: 1.8rem;
-        padding-right: 1.8rem;
-      }
-
-      footer {
-        flex-direction: column;
+    @media (max-width: 820px) {
+      .header-inner {
+        min-height: auto;
+        padding: 1.5rem 0;
         align-items: flex-start;
-        gap: 0.5rem;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .section-heading,
+      .studio-grid,
+      .company-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-aside {
+        max-width: 420px;
+      }
+
+      .capabilities {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-row {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(calc(100% - 2rem), var(--max));
+      }
+
+      .wordmark {
+        display: block;
+      }
+
+      .legal-suffix {
+        display: block;
+        margin-top: 0.2rem;
+      }
+
+      .hero {
+        padding-top: 4rem;
+      }
+
+      .capability {
+        min-height: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
       }
     }
   </style>
 </head>
-<body>
 
-  <header>
-    <span class="wordmark"><em>Evershift</em> Games</span>
-    <span class="reg">Pte. Ltd.</span>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="wordmark" href="#top" aria-label="Evershift Games home">
+        <span class="wordmark-main"><em>Evershift</em> Games</span>
+        <span class="legal-suffix">Pte. Ltd.</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">What we do</a></li>
+          <li><a href="#studio">Studio</a></li>
+          <li><a href="#company">Company</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <p class="eyebrow">Globally distributed</p>
-    <h1>Independent game<br><em>developer.</em></h1>
-    <div class="divider"></div>
-    <p class="sub">Stay tuned for our first mobile game announcement.</p>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Singapore · Globally distributed</p>
+          <h1 id="hero-title">
+            We build original games for <em>mobile.</em>
+          </h1>
+          <p class="hero-copy">
+            Evershift Games Pte. Ltd. is an independent game development
+            studio based in Singapore. Our distributed team is creating an
+            original mobile game designed around strategic depth, long-term
+            progression, and a world players can return to.
+          </p>
+        </div>
+
+        <aside class="hero-aside" aria-label="Studio summary">
+          <p>
+            Independent game developer<br />
+            Original intellectual property<br />
+            Mobile-first development<br />
+            International audience
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#about">About the studio</a>
+            <a class="button" href="mailto:contact@evershiftgames.com">Contact us</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="shell section-heading">
+        <p class="eyebrow">About Evershift</p>
+        <div>
+          <h2 id="about-title">Independent by design. Ambitious in scope.</h2>
+          <p class="lead">
+            We create original entertainment experiences for mobile players.
+            Our goal is to combine accessible play with meaningful decisions,
+            strong progression, and systems that remain rewarding over time.
+          </p>
+          <p class="body-copy">
+            Evershift Games develops its own intellectual property from its
+            Singapore base with a globally distributed team. Our first title
+            is being built for mobile platforms, including iPhone and iPad,
+            and is intended for players around the world.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">What we do</p>
+          <div>
+            <h2 id="work-title">A full game-development studio.</h2>
+            <p class="lead">
+              Our work spans the creative, technical, and operational
+              disciplines required to build and support a modern mobile game.
+            </p>
+          </div>
+        </div>
+
+        <div class="capabilities">
+          <article class="capability">
+            <span class="capability-number">01</span>
+            <h3>Game design &amp; systems</h3>
+            <p>
+              Core gameplay, progression, economy, balance, and the systems
+              that create clear goals and lasting engagement.
+            </p>
+          </article>
+
+          <article class="capability">
+            <span class="capability-number">02</span>
+            <h3>Engineering &amp; online services</h3>
+            <p>
+              Client architecture, tools, backend integration, data, and the
+              technology needed to operate a reliable mobile title.
+            </p>
+          </article>
+
+          <article class="capability">
+            <span class="capability-number">03</span>
+            <h3>World &amp; content production</h3>
+            <p>
+              Original settings, characters, visual direction, and content
+              designed as a coherent player experience.
+            </p>
+          </article>
+
+          <article class="capability">
+            <span class="capability-number">04</span>
+            <h3>Live game development</h3>
+            <p>
+              Iteration, player feedback, analytics, events, and ongoing
+              improvements after the game reaches its audience.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="project-title">
+      <div class="shell">
+        <div class="project-panel">
+          <p class="eyebrow">Our first project</p>
+          <h2 id="project-title">An original mid-core mobile game is in development.</h2>
+          <p class="lead">
+            The project is being created for an international audience, with
+            particular attention to mobile players across Asia. It is currently
+            in development for iOS and other mobile platforms.
+          </p>
+          <p class="body-copy">
+            We are not yet sharing the title, artwork, or release date publicly.
+            More information will be announced when the project is ready.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="studio" aria-labelledby="studio-title">
+      <div class="shell studio-grid">
+        <div>
+          <p class="eyebrow">The studio</p>
+          <h2 id="studio-title">Built across borders, led from Singapore.</h2>
+          <p class="lead">
+            Evershift brings together game-development experience across
+            architecture, engineering, design, production, and creative work.
+          </p>
+          <p class="body-copy">
+            We work as a distributed team across locations and time zones,
+            using a shared production process and a common technical
+            foundation. This structure allows us to assemble specialist talent
+            while maintaining one clear product vision.
+          </p>
+        </div>
+
+        <article class="founder-card">
+          <p class="eyebrow">Founder</p>
+          <h3>Lorenzo Aurea</h3>
+          <p>
+            Lorenzo is an experienced game architect and technology leader with
+            a background in large-scale game development. He founded Evershift
+            Games to build original mobile experiences with a focused,
+            independent team.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="company" aria-labelledby="company-title">
+      <div class="shell company-grid">
+        <div>
+          <p class="eyebrow">Company information</p>
+          <h2 id="company-title">A Singapore company developing original games.</h2>
+          <p class="body-copy">
+            The details below identify the legal entity operating this website
+            and applying to platform developer programs.
+          </p>
+        </div>
+
+        <div class="details">
+          <div class="detail-row">
+            <div class="detail-label">Legal entity</div>
+            <div class="detail-value">Evershift Games Pte. Ltd.</div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-label">Jurisdiction</div>
+            <div class="detail-value">Singapore</div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-label">Registered office</div>
+            <div class="detail-value">
+              68 Circular Road, #02-01<br />
+              Singapore 049422
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-label">Website</div>
+            <div class="detail-value">
+              <a href="https://www.evershiftgames.com/">
+                www.evershiftgames.com
+              </a>
+            </div>
+          </div>
+
+          <div class="detail-row" id="contact">
+            <div class="detail-label">Business enquiries</div>
+            <div class="detail-value">
+              <a href="mailto:contact@evershiftgames.com">
+                contact@evershiftgames.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy" aria-labelledby="privacy-title">
+      <div class="shell">
+        <details>
+          <summary id="privacy-title">Website privacy notice</summary>
+          <p>
+            This website does not provide user accounts, advertising, or
+            public-facing forms, and Evershift Games does not directly collect
+            personal information through the site. If you contact us by email,
+            we will use the information you provide only to respond to your
+            enquiry and manage the resulting business correspondence.
+          </p>
+          <p>
+            Our hosting provider may process limited technical information,
+            such as IP addresses and request logs, for security, reliability,
+            and website operation. For privacy-related enquiries, contact
+            <a href="mailto:contact@evershiftgames.com">
+              contact@evershiftgames.com
+            </a>.
+          </p>
+          <p>Last updated: 15 July 2026.</p>
+        </details>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <address class="address" style="font-style:normal;">
-      68 Circular Road, #02-01<br>
-      Singapore 049422
-    </address>
-    <span class="year">© 2026 Evershift Games Pte. Ltd.</span>
-  </footer>
+    <div class="shell">
+      <div class="footer-grid">
+        <address class="address">
+          Evershift Games Pte. Ltd.<br />
+          68 Circular Road, #02-01<br />
+          Singapore 049422
+        </address>
 
+        <div class="footer-links" aria-label="Footer links">
+          <a href="#about">About</a>
+          <a href="#company">Company</a>
+          <a href="#privacy">Privacy</a>
+          <a href="mailto:contact@evershiftgames.com">Email</a>
+        </div>
+      </div>
+
+      <p class="copyright">
+        © 2026 Evershift Games Pte. Ltd. All rights reserved.
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
